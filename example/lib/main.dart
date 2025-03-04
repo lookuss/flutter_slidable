@@ -59,6 +59,7 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
                 motion: const ScrollMotion(),
                 children: [
                   SlidableAction(
+                    delHeight: 10,
                     // An action can be bigger than the others.
                     flex: 2,
                     onPressed: (_) => controller.openEndActionPane(),
@@ -79,7 +80,12 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
 
               // The child of the Slidable is what the user sees when the
               // component is not dragged.
-              child: const ListTile(title: Text('Slide me')),
+              child: SizedBox(
+                  height: 140,
+                  child: ListTile(
+                    title: Text('Slide me'),
+                    tileColor: Colors.amber,
+                  )),
             ),
             Slidable(
               controller: controller,

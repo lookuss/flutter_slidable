@@ -97,22 +97,25 @@ class CustomSlidableAction extends StatelessWidget {
 
     return Expanded(
       flex: flex,
-      child: Padding(
-        padding: EdgeInsets.only(top: delHeight),
-        child: OutlinedButton(
-          onPressed: () => _handleTap(context),
-          style: OutlinedButton.styleFrom(
-            padding: padding,
-            backgroundColor: backgroundColor,
-            disabledForegroundColor: effectiveForegroundColor.withOpacity(0.38),
-            iconColor: effectiveForegroundColor,
-            foregroundColor: effectiveForegroundColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: borderRadius,
+      child: SizedBox.expand(
+        child: Padding(
+          padding: EdgeInsets.only(top: delHeight),
+          child: OutlinedButton(
+            onPressed: () => _handleTap(context),
+            style: OutlinedButton.styleFrom(
+              padding: padding,
+              backgroundColor: backgroundColor,
+              disabledForegroundColor:
+                  effectiveForegroundColor.withOpacity(0.38),
+              iconColor: effectiveForegroundColor,
+              foregroundColor: effectiveForegroundColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: borderRadius,
+              ),
+              side: BorderSide.none,
             ),
-            side: BorderSide.none,
+            child: child,
           ),
-          child: child,
         ),
       ),
     );
