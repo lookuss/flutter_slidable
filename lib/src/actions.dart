@@ -95,11 +95,11 @@ class CustomSlidableAction extends StatelessWidget {
             ? Colors.black
             : Colors.white);
 
-    return Padding(
-      padding: EdgeInsets.only(top: delHeight),
-      child: Expanded(
-        flex: flex,
-        child: SizedBox.expand(
+    return Expanded(
+      flex: flex,
+      child: SizedBox.expand(
+        child: Padding(
+          padding: EdgeInsets.only(top: delHeight),
           child: OutlinedButton(
             onPressed: () => _handleTap(context),
             style: OutlinedButton.styleFrom(
