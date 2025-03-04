@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 import 'slidable.dart';
@@ -27,7 +29,7 @@ class CustomSlidableAction extends StatelessWidget {
     this.padding,
     required this.onPressed,
     required this.child,
-    this.delHeight = 0,
+    this.delHeight = 0.0,
   }) : assert(flex > 0);
 
   /// {@template slidable.actions.flex}
@@ -83,7 +85,7 @@ class CustomSlidableAction extends StatelessWidget {
   /// Typically the action's icon or label.
   final Widget child;
 
-  final int delHeight;
+  final double delHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -94,28 +96,25 @@ class CustomSlidableAction extends StatelessWidget {
             : Colors.white);
 
     return Padding(
-      padding: const EdgeInsets.only(
-        top: delHeight,
-        child: Expanded(
-          flex: flex,
-          child: SizedBox.expand(
-            child: OutlinedButton(
-              onPressed: () => _handleTap(context),
-              style: OutlinedButton.styleFrom(
-                padding: padding,
-                backgroundColor: backgroundColor,
-                disabledForegroundColor: effectiveForegroundColor.withValues(
-                  alpha: 0.38,
-                ),
-                iconColor: effectiveForegroundColor,
-                foregroundColor: effectiveForegroundColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: borderRadius,
-                ),
-                side: BorderSide.none,
+      padding: EdgeInsets.only(top: delHeight),
+      child: Expanded(
+        flex: flex,
+        child: SizedBox.expand(
+          child: OutlinedButton(
+            onPressed: () => _handleTap(context),
+            style: OutlinedButton.styleFrom(
+              padding: padding,
+              backgroundColor: backgroundColor,
+              disabledForegroundColor:
+                  effectiveForegroundColor.withOpacity(0.38),
+              iconColor: effectiveForegroundColor,
+              foregroundColor: effectiveForegroundColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: borderRadius,
               ),
-              child: child,
+              side: BorderSide.none,
             ),
+            child: child,
           ),
         ),
       ),
@@ -188,7 +187,7 @@ class SlidableAction extends StatelessWidget {
   /// Padding of the OutlinedButton
   final EdgeInsets? padding;
 
-  final int delHeight;
+  final double delHeight;
 
   @override
   Widget build(BuildContext context) {
